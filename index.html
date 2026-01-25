@@ -36,6 +36,7 @@
 		.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.01em; }
 		.brand-mark { width: 36px; height: 36px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #7ca7ff); display: grid; place-items: center; color: #05060a; box-shadow: var(--shadow); }
 		.brand-mark svg { width: 20px; height: 20px; display: block; }
+		.brand-mark img { width: 100%; height: 100%; border-radius: 10px; display: block; }
 		.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font-weight: 600; border: 1px solid var(--border); background: var(--panel); color: var(--text); box-shadow: var(--shadow); transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; }
 		.btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.24); box-shadow: 0 20px 50px rgba(0,0,0,0.55); }
 		.btn.primary { background: linear-gradient(135deg, var(--accent), #7ca7ff); color: #05060a; border: none; }
@@ -62,9 +63,7 @@
 		<header>
 			<div class="brand">
 				<div class="brand-mark" aria-label="MetaboDesk">
-					<svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-						<path d="M4 18V6l4.6 6 3-4 3 4L20 6v12h-2.5v-7.3l-2.9 4h-1.2l-2.9-4V18H8.9v-7.3L6 14.5V18H4z" fill="currentColor" />
-					</svg>
+					<img src="metabodesk%20logo.png" alt="MetaboDesk logo" />
 				</div>
 				<div>MetaboDesk · Windows</div>
 			</div>
@@ -75,7 +74,7 @@
 			<div>
 				<div class="eyebrow">Ready for Windows</div>
 				<h1>All-in-one suite for metabolic network analysis.</h1>
-				<p class="lede">MetaboDesk bundles flux balance analysis, variation studies, deletion analysis, robustness, and production envelopes into a single desktop app. Fast setup, one-click runs.</p>
+				<p class="lede">MetaboDesk bundles flux balance analysis, variation studies, gene deletion analysis, robustness, and production envelopes into a single desktop app. Fast setup, one-click runs.</p>
 				<div class="hero-actions">
 					<a class="btn primary" href="https://example.com/metabodesk-windows" target="_blank" rel="noopener">Download for Windows</a>
 					<a class="btn" href="#how">How to use</a>
@@ -116,14 +115,14 @@
 			<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
 				<div>
 					<h3 style="margin:0 0 6px;">Windows build</h3>
-					<p style="margin:0; color: var(--muted);">Download the installer and run it.</p>
+					<p style="margin:0; color: var(--muted);">Download the .exe file and run it.</p>
 				</div>
-				<a class="btn primary" href="https://example.com/metabodesk-windows" target="_blank" rel="noopener">Download for Windows</a>
+				<a class="btn primary" href="https://github.com/Emiray02/metabodesk/releases/download/1.0.0/metabodesk_app.exe" target="_blank" rel="noopener">Download for Windows</a>
 			</div>
 		</section>
 
 		<footer>
-			MetaboDesk · Windows only
+			® Emir Ay 2026 · MetaboDesk  
 		</footer>
 	</div>
 </body>
