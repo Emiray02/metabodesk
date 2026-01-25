@@ -5649,6 +5649,13 @@ Tools:
 def main():
     app = QApplication(sys.argv)
     win = MainWindow()
+    
+    try:
+        import pyi_splash
+        pyi_splash.close()
+    except Exception:
+        pass
+
     win.show()
     sys.exit(app.exec())
 
