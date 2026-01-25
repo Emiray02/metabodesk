@@ -1,521 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Metabodesk Documentation</title>
-    <meta
-      name="description"
-      content="Metabodesk documentation template: quick start, guides, API reference, and troubleshooting."
-    />
-    <style>
-      :root {
-        --bg: #0b1020;
-        --panel: #121836;
-        --panel-2: #0f1530;
-        --text: #e8ecff;
-        --muted: #a7b0d6;
-        --brand: #6c8cff;
-        --brand-2: #8a6cff;
-        --border: #233063;
-        --code-bg: #0c122b;
-        --success: #4dd19a;
-        --warning: #ffcf5c;
-        --danger: #ff6b6b;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-      }
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>MetaboDesk | Windows</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<style>
+		:root {
+			--bg: #05060a;
+			--panel: rgba(255, 255, 255, 0.05);
+			--card: rgba(255, 255, 255, 0.08);
+			--accent: #69f5c2;
+			--text: #eaf2ff;
+			--muted: #9fb0c5;
+			--border: rgba(255, 255, 255, 0.14);
+			--shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+		}
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: "Space Grotesk", sans-serif;
+			background: radial-gradient(120% 120% at 8% 16%, rgba(105, 245, 194, 0.12), transparent 45%),
+				radial-gradient(120% 120% at 82% 0%, rgba(124, 167, 255, 0.16), transparent 50%),
+				linear-gradient(140deg, #0a0b10, #05060a 40%, #0b0c12 85%);
+			color: var(--text);
+			min-height: 100vh;
+			-webkit-font-smoothing: antialiased;
+			line-height: 1.6;
+		}
+		a { color: inherit; text-decoration: none; }
+		.page { max-width: 1080px; margin: 0 auto; padding: 32px 22px 64px; }
+		header { display: flex; align-items: center; justify-content: space-between; padding: 10px 0 20px; }
+		.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.01em; }
+		.brand-mark { width: 36px; height: 36px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #7ca7ff); display: grid; place-items: center; color: #05060a; box-shadow: var(--shadow); }
+		.brand-mark svg { width: 20px; height: 20px; display: block; }
+		.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font-weight: 600; border: 1px solid var(--border); background: var(--panel); color: var(--text); box-shadow: var(--shadow); transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; }
+		.btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.24); box-shadow: 0 20px 50px rgba(0,0,0,0.55); }
+		.btn.primary { background: linear-gradient(135deg, var(--accent), #7ca7ff); color: #05060a; border: none; }
+		.hero { padding: 40px 0 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; align-items: center; }
+		.eyebrow { color: var(--accent); letter-spacing: 0.08em; font-size: 12px; text-transform: uppercase; font-weight: 700; }
+		h1 { margin: 8px 0 14px; font-size: clamp(32px, 4vw, 46px); line-height: 1.1; }
+		.lede { color: var(--muted); font-size: 17px; }
+		.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+		section { padding: 30px 0; }
+		h2 { margin: 0 0 10px; font-size: 24px; }
+		.section-lede { color: var(--muted); margin: 0 0 14px; }
+		.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+		.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); }
+		.card h3 { margin: 0 0 8px; font-size: 17px; }
+		.card p { margin: 0; color: var(--muted); }
+		.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
+		.step { padding: 14px; border-radius: 14px; border: 1px solid var(--border); background: var(--panel); }
+		.step strong { display: block; margin-bottom: 6px; }
+		footer { margin-top: 24px; color: var(--muted); font-size: 13px; text-align: center; }
+	</style>
+</head>
+<body>
+	<div class="page">
+		<header>
+			<div class="brand">
+				<div class="brand-mark" aria-label="MetaboDesk">
+					<svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+						<path d="M4 18V6l4.6 6 3-4 3 4L20 6v12h-2.5v-7.3l-2.9 4h-1.2l-2.9-4V18H8.9v-7.3L6 14.5V18H4z" fill="currentColor" />
+					</svg>
+				</div>
+				<div>MetaboDesk · Windows</div>
+			</div>
+			<a class="btn primary" href="#download">Download</a>
+		</header>
 
-      * {
-        box-sizing: border-box;
-      }
+		<section class="hero" id="top">
+			<div>
+				<div class="eyebrow">Ready for Windows</div>
+				<h1>All-in-one suite for metabolic network analysis.</h1>
+				<p class="lede">MetaboDesk bundles flux balance analysis, variation studies, deletion analysis, robustness, and production envelopes into a single desktop app. Fast setup, one-click runs.</p>
+				<div class="hero-actions">
+					<a class="btn primary" href="https://example.com/metabodesk-windows" target="_blank" rel="noopener">Download for Windows</a>
+					<a class="btn" href="#how">How to use</a>
+				</div>
+			</div>
+			<div class="card">
+				<h3>Highlights</h3>
+				<p>FBA, pFBA, FVA, single/double knockouts, robustness, production envelope, and flux sampling in one window.</p>
+			</div>
+		</section>
 
-      body {
-        margin: 0;
-        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-        background: radial-gradient(circle at top, #141c44, #0a0f22 55%);
-        color: var(--text);
-      }
+		<section id="features">
+			<h2>Features</h2>
+			<p class="section-lede">Essential tools for analysis, visualization, and export.</p>
+			<div class="grid">
+				<div class="card"><h3>Analysis</h3><p>FBA/pFBA, FVA, single/double gene or reaction deletions, robustness, production envelope, flux sampling.</p></div>
+				<div class="card"><h3>Map</h3><p>Interactive network view, node details, and quick filtering.</p></div>
+				<div class="card"><h3>Export</h3><p>Export results as CSV and share studies.</p></div>
+				<div class="card"><h3>Scenarios</h3><p>Save configurations, reload, and compare runs.</p></div>
+			</div>
+		</section>
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+		<section id="how">
+			<h2>How to use</h2>
+			<p class="section-lede">Start your analysis in five steps.</p>
+			<div class="steps">
+				<div class="step"><strong>1.</strong> Download and install the app.</div>
+				<div class="step"><strong>2.</strong> Open your model.</div>
+				<div class="step"><strong>3.</strong> Select the analysis type.</div>
+				<div class="step"><strong>4.</strong> Run and review results.</div>
+				<div class="step"><strong>5.</strong> Export to CSV.</div>
+			</div>
+		</section>
 
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        background: rgba(10, 15, 34, 0.85);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid var(--border);
-      }
+		<section id="download">
+			<h2>Download</h2>
+			<p class="section-lede">MetaboDesk is available for Windows only.</p>
+			<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+				<div>
+					<h3 style="margin:0 0 6px;">Windows build</h3>
+					<p style="margin:0; color: var(--muted);">Download the installer and run it.</p>
+				</div>
+				<a class="btn primary" href="https://example.com/metabodesk-windows" target="_blank" rel="noopener">Download for Windows</a>
+			</div>
+		</section>
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 24px;
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 0;
-        gap: 16px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-      }
-
-      .logo {
-        width: 36px;
-        height: 36px;
-        border-radius: 12px;
-        background: linear-gradient(135deg, var(--brand), var(--brand-2));
-        display: grid;
-        place-items: center;
-        font-weight: 700;
-        color: #0c1022;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 18px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .nav-links a:hover {
-        color: var(--text);
-      }
-
-      .hero {
-        padding: 64px 0 32px;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 32px;
-        align-items: center;
-      }
-
-      .hero h1 {
-        font-size: clamp(32px, 5vw, 52px);
-        margin: 0 0 12px;
-      }
-
-      .hero p {
-        color: var(--muted);
-        margin: 0 0 24px;
-        font-size: 17px;
-        line-height: 1.6;
-      }
-
-      .cta {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .button {
-        padding: 12px 18px;
-        border-radius: 12px;
-        border: 1px solid transparent;
-        font-weight: 600;
-        font-size: 14px;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .button.primary {
-        background: linear-gradient(135deg, var(--brand), var(--brand-2));
-        color: #0d1328;
-        box-shadow: var(--shadow);
-      }
-
-      .button.secondary {
-        border-color: var(--border);
-        color: var(--text);
-        background: var(--panel-2);
-      }
-
-      .button:hover {
-        transform: translateY(-2px);
-      }
-
-      .hero-card {
-        background: linear-gradient(160deg, #151c3f, #0c122a);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 24px;
-        box-shadow: var(--shadow);
-      }
-
-      .hero-card h3 {
-        margin-top: 0;
-      }
-
-      .hero-card ul {
-        list-style: none;
-        padding: 0;
-        margin: 16px 0 0;
-        display: grid;
-        gap: 10px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .hero-card li {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 12px;
-        border-radius: 999px;
-        font-size: 12px;
-        background: rgba(108, 140, 255, 0.16);
-        color: var(--brand);
-        margin-bottom: 12px;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 20px;
-      }
-
-      .card {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        padding: 20px;
-        border-radius: 16px;
-      }
-
-      .card h3 {
-        margin: 0 0 10px;
-      }
-
-      section {
-        padding: 32px 0;
-      }
-
-      .section-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 16px;
-      }
-
-      .section-title h2 {
-        margin: 0;
-      }
-
-      .tag {
-        font-size: 12px;
-        padding: 4px 8px;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        color: var(--muted);
-      }
-
-      .doc-layout {
-        display: grid;
-        grid-template-columns: 240px 1fr;
-        gap: 24px;
-      }
-
-      @media (max-width: 900px) {
-        .doc-layout {
-          grid-template-columns: 1fr;
-        }
-        .nav-links {
-          display: none;
-        }
-      }
-
-      aside {
-        position: sticky;
-        top: 90px;
-        align-self: start;
-        background: var(--panel-2);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        padding: 16px;
-      }
-
-      aside h4 {
-        margin-top: 0;
-      }
-
-      .toc {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: grid;
-        gap: 10px;
-        font-size: 14px;
-        color: var(--muted);
-      }
-
-      .toc a:hover {
-        color: var(--text);
-      }
-
-      pre {
-        background: var(--code-bg);
-        color: #d9e0ff;
-        padding: 16px;
-        border-radius: 12px;
-        overflow-x: auto;
-        border: 1px solid var(--border);
-      }
-
-      code {
-        font-family: "Cascadia Code", "Fira Code", monospace;
-        font-size: 13px;
-      }
-
-      .callout {
-        border: 1px solid var(--border);
-        border-left-width: 4px;
-        border-radius: 12px;
-        padding: 12px 14px;
-        background: rgba(255, 255, 255, 0.03);
-        margin: 16px 0;
-      }
-
-      .callout.success {
-        border-left-color: var(--success);
-      }
-
-      .callout.warning {
-        border-left-color: var(--warning);
-      }
-
-      .callout.danger {
-        border-left-color: var(--danger);
-      }
-
-      .table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 14px;
-      }
-
-      .table th,
-      .table td {
-        padding: 10px;
-        border-bottom: 1px solid var(--border);
-        text-align: left;
-      }
-
-      footer {
-        border-top: 1px solid var(--border);
-        padding: 24px 0 48px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <div class="container nav">
-        <div class="brand">
-          <div class="logo">MB</div>
-          <span>Metabodesk Docs</span>
-        </div>
-        <nav class="nav-links">
-          <a href="#overview">Overview</a>
-          <a href="#quickstart">Quick Start</a>
-          <a href="#guides">Guides</a>
-          <a href="#api">API</a>
-          <a href="#support">Support</a>
-        </nav>
-      </div>
-    </header>
-
-    <main class="container">
-      <section class="hero" id="overview">
-        <div>
-          <span class="pill">Static HTML Template</span>
-          <h1>Metabodesk Documentation</h1>
-          <p>
-            A clean, modern documentation layout for product guides, API
-            references, onboarding, and troubleshooting. Replace the copy below
-            with your real content.
-          </p>
-          <div class="cta">
-            <a class="button primary" href="#quickstart">Get Started</a>
-            <a class="button secondary" href="#api">Explore API</a>
-          </div>
-        </div>
-        <div class="hero-card">
-          <h3>What’s included</h3>
-          <ul>
-            <li>✅ Sticky navigation &amp; sidebar</li>
-            <li>✅ Guides, API, and troubleshooting</li>
-            <li>✅ Code blocks and callouts</li>
-            <li>✅ Responsive layout</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-title">
-          <h2>Highlights</h2>
-          <span class="tag">v1.0</span>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <h3>Fast onboarding</h3>
-            <p>Step-by-step quick start helps teams ship in minutes.</p>
-          </div>
-          <div class="card">
-            <h3>API-first</h3>
-            <p>Clear endpoints, payloads, and examples for developers.</p>
-          </div>
-          <div class="card">
-            <h3>Support ready</h3>
-            <p>Troubleshooting workflows and status resources built in.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="doc-layout" id="quickstart">
-        <aside>
-          <h4>On this page</h4>
-          <ul class="toc">
-            <li><a href="#quickstart">Quick Start</a></li>
-            <li><a href="#guides">Guides</a></li>
-            <li><a href="#api">API Reference</a></li>
-            <li><a href="#troubleshooting">Troubleshooting</a></li>
-          </ul>
-        </aside>
-        <div>
-          <div class="section-title">
-            <h2>Quick Start</h2>
-            <span class="tag">5 minutes</span>
-          </div>
-          <p>
-            Follow these steps to get Metabodesk running locally and connect your
-            first workspace.
-          </p>
-          <ol>
-            <li>Install the Metabodesk desktop app.</li>
-            <li>Create a workspace and generate an API key.</li>
-            <li>Configure your first data source.</li>
-          </ol>
-          <pre><code>curl -X POST https://api.metabodesk.com/v1/workspaces \
-  -H "Authorization: Bearer &lt;API_KEY&gt;" \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Demo Workspace"}'</code></pre>
-          <div class="callout success">
-            <strong>Tip:</strong> Use environment variables to store API keys.
-          </div>
-        </div>
-      </section>
-
-      <section id="guides">
-        <div class="section-title">
-          <h2>Guides</h2>
-          <span class="tag">Updated Jan 2026</span>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <h3>Authentication</h3>
-            <p>Set up OAuth or API key auth for your integrations.</p>
-          </div>
-          <div class="card">
-            <h3>Data sync</h3>
-            <p>Schedule sync jobs and monitor connector health.</p>
-          </div>
-          <div class="card">
-            <h3>Roles &amp; access</h3>
-            <p>Define permissions for admins, editors, and viewers.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="api">
-        <div class="section-title">
-          <h2>API Reference</h2>
-          <span class="tag">REST</span>
-        </div>
-        <div class="card">
-          <h3>List Workspaces</h3>
-          <p><strong>GET</strong> /v1/workspaces</p>
-          <pre><code>GET https://api.metabodesk.com/v1/workspaces
-Authorization: Bearer &lt;API_KEY&gt;</code></pre>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Field</th>
-                <th>Type</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>id</td>
-                <td>string</td>
-                <td>Workspace identifier</td>
-              </tr>
-              <tr>
-                <td>name</td>
-                <td>string</td>
-                <td>Human readable name</td>
-              </tr>
-              <tr>
-                <td>createdAt</td>
-                <td>datetime</td>
-                <td>ISO-8601 timestamp</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="callout warning">
-            <strong>Note:</strong> Rate limits default to 100 requests/minute.
-          </div>
-        </div>
-      </section>
-
-      <section id="troubleshooting">
-        <div class="section-title">
-          <h2>Troubleshooting</h2>
-          <span class="tag">Help Center</span>
-        </div>
-        <div class="grid">
-          <div class="card">
-            <h3>Connector errors</h3>
-            <p>Validate credentials and check connector status logs.</p>
-          </div>
-          <div class="card">
-            <h3>Sync delays</h3>
-            <p>Review queue size and reduce batch size if needed.</p>
-          </div>
-          <div class="card">
-            <h3>Contact support</h3>
-            <p>Email support@metabodesk.com with your workspace ID.</p>
-          </div>
-        </div>
-        <div class="callout danger" id="support">
-          <strong>Need help fast?</strong> Visit status.metabodesk.com or open a
-          priority ticket.
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div class="container">
-        <div>© 2026 Emir Ay. All rights reserved.</div>
-        <div>Last updated: January 25, 2026</div>
-      </div>
-    </footer>
-  </body>
+		<footer>
+			MetaboDesk · Windows only
+		</footer>
+	</div>
+</body>
 </html>
