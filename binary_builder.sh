@@ -1,1 +1,1 @@
-pyinstaller --icon=logo.ico --splash=splash.gif --onefile --noconsole .\metabodesk_app.py
+pyinstaller --clean --noconfirm --icon=logo.ico --splash=splash.gif --onefile --noconsole .\metabodesk_app.py
