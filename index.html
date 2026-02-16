@@ -3,139 +3,670 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>MetaboDesk | Windows</title>
+	<title>MetaboDesk — Metabolic Network Analysis Suite</title>
+	<meta name="description" content="MetaboDesk is a powerful desktop application for metabolic network analysis. FBA, pFBA, FVA, gene knockouts, robustness analysis, production envelopes, and flux sampling in one intuitive tool." />
+	<link rel="icon" type="image/png" href="logo.png" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 	<style>
 		:root {
-			--bg: #05060a;
-			--panel: rgba(255, 255, 255, 0.05);
-			--card: rgba(255, 255, 255, 0.08);
-			--accent: #69f5c2;
-			--text: #eaf2ff;
-			--muted: #9fb0c5;
-			--border: rgba(255, 255, 255, 0.14);
-			--shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
+			--bg: #0a0d14;
+			--bg-2: #0f1219;
+			--surface: rgba(255, 255, 255, 0.04);
+			--surface-2: rgba(255, 255, 255, 0.07);
+			--accent: #22d3ee;
+			--accent-2: #a78bfa;
+			--text: #f1f5f9;
+			--muted: #94a3b8;
+			--border: rgba(255, 255, 255, 0.1);
+			--shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+			--glow: 0 0 60px rgba(34, 211, 238, 0.15);
 		}
-		* { box-sizing: border-box; }
+		* { box-sizing: border-box; margin: 0; padding: 0; }
+		html { scroll-behavior: smooth; }
 		body {
-			margin: 0;
-			font-family: "Space Grotesk", sans-serif;
-			background: radial-gradient(120% 120% at 8% 16%, rgba(105, 245, 194, 0.12), transparent 45%),
-				radial-gradient(120% 120% at 82% 0%, rgba(124, 167, 255, 0.16), transparent 50%),
-				linear-gradient(140deg, #0a0b10, #05060a 40%, #0b0c12 85%);
+			font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			background: var(--bg);
 			color: var(--text);
-			min-height: 100vh;
+			line-height: 1.7;
 			-webkit-font-smoothing: antialiased;
-			line-height: 1.6;
 		}
-		a { color: inherit; text-decoration: none; }
-		.page { max-width: 1080px; margin: 0 auto; padding: 32px 22px 64px; }
-		header { display: flex; align-items: center; justify-content: space-between; padding: 10px 0 20px; }
-		.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; letter-spacing: 0.01em; }
-		.brand-mark { width: 36px; height: 36px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), #7ca7ff); display: grid; place-items: center; color: #05060a; box-shadow: var(--shadow); }
-		.brand-mark svg { width: 20px; height: 20px; display: block; }
-		.brand-mark img { width: 100%; height: 100%; border-radius: 10px; display: block; }
-		.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font-weight: 600; border: 1px solid var(--border); background: var(--panel); color: var(--text); box-shadow: var(--shadow); transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; }
-		.btn:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.24); box-shadow: 0 20px 50px rgba(0,0,0,0.55); }
-		.btn.primary { background: linear-gradient(135deg, var(--accent), #7ca7ff); color: #05060a; border: none; }
-		.hero { padding: 40px 0 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; align-items: center; }
-		.eyebrow { color: var(--accent); letter-spacing: 0.08em; font-size: 12px; text-transform: uppercase; font-weight: 700; }
-		h1 { margin: 8px 0 14px; font-size: clamp(32px, 4vw, 46px); line-height: 1.1; }
-		.lede { color: var(--muted); font-size: 17px; }
-		.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
-		section { padding: 30px 0; }
-		h2 { margin: 0 0 10px; font-size: 24px; }
-		.section-lede { color: var(--muted); margin: 0 0 14px; }
-		.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-		.card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); }
-		.card h3 { margin: 0 0 8px; font-size: 17px; }
-		.card p { margin: 0; color: var(--muted); }
-		.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
-		.step { padding: 14px; border-radius: 14px; border: 1px solid var(--border); background: var(--panel); }
-		.step strong { display: block; margin-bottom: 6px; }
-		footer { margin-top: 24px; color: var(--muted); font-size: 13px; text-align: center; }
+		a { color: inherit; text-decoration: none; transition: color 0.2s; }
+		a:hover { color: var(--accent); }
+		.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+		/* Header */
+		header {
+			position: sticky; top: 0; z-index: 100;
+			background: rgba(10, 13, 20, 0.85);
+			backdrop-filter: blur(16px);
+			border-bottom: 1px solid var(--border);
+		}
+		.nav {
+			display: flex; align-items: center; justify-content: space-between;
+			padding: 16px 0; gap: 24px;
+		}
+		.brand { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 18px; }
+		.brand img { width: 42px; height: 42px; border-radius: 12px; box-shadow: var(--shadow); }
+		.nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 500; color: var(--muted); }
+		.nav-links a:hover { color: var(--text); }
+		@media (max-width: 700px) { .nav-links { display: none; } }
+
+		/* Buttons */
+		.btn {
+			display: inline-flex; align-items: center; gap: 8px;
+			padding: 14px 24px; border-radius: 12px;
+			font-weight: 600; font-size: 14px;
+			border: 1px solid var(--border);
+			background: var(--surface);
+			color: var(--text);
+			box-shadow: var(--shadow);
+			transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+			cursor: pointer;
+		}
+		.btn:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+		.btn.primary {
+			background: linear-gradient(135deg, var(--accent), var(--accent-2));
+			color: #0f172a; border: none;
+		}
+		.btn.primary:hover { filter: brightness(1.1); }
+		.btn.disabled {
+			opacity: 0.5; cursor: not-allowed; pointer-events: none;
+		}
+
+		/* Hero */
+		.hero {
+			padding: 80px 0 60px;
+			display: grid; grid-template-columns: 1fr 1fr;
+			gap: 48px; align-items: center;
+		}
+		@media (max-width: 900px) { .hero { grid-template-columns: 1fr; text-align: center; } }
+		.hero-badge {
+			display: inline-flex; align-items: center; gap: 8px;
+			background: var(--surface-2); border: 1px solid var(--border);
+			padding: 6px 14px; border-radius: 999px;
+			font-size: 12px; font-weight: 600; color: var(--accent);
+			text-transform: uppercase; letter-spacing: 0.05em;
+			margin-bottom: 16px;
+		}
+		.hero h1 {
+			font-size: clamp(36px, 5vw, 56px);
+			font-weight: 800; line-height: 1.1;
+			background: linear-gradient(135deg, var(--text), var(--accent));
+			-webkit-background-clip: text; -webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+		.hero p { color: var(--muted); font-size: 18px; margin: 20px 0 28px; max-width: 540px; }
+		@media (max-width: 900px) { .hero p { margin-left: auto; margin-right: auto; } }
+		.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+		@media (max-width: 900px) { .hero-actions { justify-content: center; } }
+		.hero-visual {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 20px;
+			padding: 32px;
+			box-shadow: var(--shadow);
+			display: flex; flex-direction: column; gap: 16px;
+		}
+		.hero-visual img { width: 100%; border-radius: 12px; }
+		.hero-visual ul { list-style: none; display: grid; gap: 10px; font-size: 14px; color: var(--muted); }
+		.hero-visual li { display: flex; align-items: center; gap: 10px; }
+		.hero-visual li::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+		/* Sections */
+		section { padding: 64px 0; }
+		.section-header { text-align: center; margin-bottom: 40px; }
+		.section-header h2 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+		.section-header p { color: var(--muted); font-size: 16px; max-width: 600px; margin: 0 auto; }
+
+		/* Features Grid */
+		.features-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 20px;
+		}
+		.feature-card {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 24px;
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+		.feature-card:hover { transform: translateY(-4px); box-shadow: var(--glow); }
+		.feature-icon {
+			width: 48px; height: 48px; border-radius: 12px;
+			background: linear-gradient(135deg, var(--accent), var(--accent-2));
+			display: grid; place-items: center;
+			font-size: 22px; margin-bottom: 16px;
+		}
+		.feature-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+		.feature-card p { color: var(--muted); font-size: 14px; }
+
+		/* Download Grid */
+		.download-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 20px;
+		}
+		.download-card {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 28px;
+			display: flex; flex-direction: column; gap: 16px;
+		}
+		.download-card h3 { font-size: 20px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+		.os-icon { width: 28px; height: 28px; flex-shrink: 0; }
+		.download-card p { color: var(--muted); font-size: 14px; flex: 1; }
+		.download-card .badge {
+			display: inline-block;
+			background: var(--accent);
+			color: #0f172a;
+			padding: 4px 10px;
+			border-radius: 6px;
+			font-size: 11px;
+			font-weight: 700;
+			text-transform: uppercase;
+		}
+		.download-card .badge.soon {
+			background: var(--muted);
+			color: var(--bg);
+		}
+
+		/* Modal */
+		.modal-overlay {
+			display: none;
+			position: fixed; inset: 0;
+			background: rgba(0, 0, 0, 0.8);
+			backdrop-filter: blur(8px);
+			z-index: 1000;
+			justify-content: center; align-items: center;
+			padding: 24px;
+		}
+		.modal-overlay.active { display: flex; }
+		.modal {
+			background: var(--bg-2);
+			border: 1px solid var(--border);
+			border-radius: 20px;
+			max-width: 900px;
+			width: 100%;
+			max-height: 90vh;
+			overflow-y: auto;
+			box-shadow: var(--shadow);
+		}
+		.modal-header {
+			position: sticky; top: 0;
+			background: var(--bg-2);
+			padding: 24px 28px;
+			border-bottom: 1px solid var(--border);
+			display: flex; justify-content: space-between; align-items: center;
+		}
+		.modal-header h2 { font-size: 24px; font-weight: 700; }
+		.modal-close {
+			background: none; border: none;
+			color: var(--muted); font-size: 28px;
+			cursor: pointer; transition: color 0.2s;
+		}
+		.modal-close:hover { color: var(--text); }
+		.modal-body { padding: 28px; }
+		.modal-body h3 { font-size: 18px; font-weight: 600; margin: 24px 0 12px; color: var(--accent); }
+		.modal-body h3:first-child { margin-top: 0; }
+		.modal-body p, .modal-body li { color: var(--muted); font-size: 15px; margin-bottom: 10px; }
+		.modal-body ol, .modal-body ul { padding-left: 24px; }
+		.modal-body code {
+			background: var(--surface-2);
+			padding: 2px 8px;
+			border-radius: 4px;
+			font-size: 13px;
+			color: var(--accent);
+		}
+		.modal-body .note {
+			background: var(--surface);
+			border-left: 4px solid var(--accent);
+			padding: 14px 18px;
+			border-radius: 8px;
+			margin: 16px 0;
+		}
+
+		/* License */
+		.license-section {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			padding: 28px;
+			text-align: center;
+		}
+		.license-section h3 { font-size: 20px; margin-bottom: 12px; }
+		.license-section p { color: var(--muted); font-size: 14px; max-width: 600px; margin: 0 auto 16px; }
+		.license-section a { color: var(--accent); font-weight: 600; }
+
+		/* Footer */
+		footer {
+			border-top: 1px solid var(--border);
+			padding: 32px 0;
+			text-align: center;
+			color: var(--muted);
+			font-size: 13px;
+		}
 	</style>
 </head>
 <body>
-	<div class="page">
-		<header>
-			<div class="brand">
-				<div class="brand-mark" aria-label="MetaboDesk">
-					<img src="metabodesk%20logo.png" alt="MetaboDesk logo" />
-				</div>
-				<div>MetaboDesk for Model Editing & Creating</div>
-			</div>
-			<a class="btn primary" href="#download">Download</a>
-		</header>
 
-		<section class="hero" id="top">
-			<div>
-				<div class="eyebrow">Ready to go beyond "run"</div>
-				<h1>All-in-one suite for metabolic network analysis.</h1>
-				<p class="lede">MetaboDesk bundles flux balance analysis, variation studies, gene deletion analysis, robustness, and production envelopes into a single desktop app. Fast setup, one-click runs.</p>
-				<div class="hero-actions">
-					<a class="btn primary" href="https://github.com/Emiray02/metabodesk/releases/download/1.0.0/metabodesk_app.exe" target="_blank" rel="noopener">Download for Windows</a>
-					<a class="btn" href="#how">How to use</a>
-				</div>
-			</div>
-			<div class="card">
-				<h3>Highlights</h3>
-				<p>FBA, pFBA, FVA, single/double knockouts, robustness, production envelope, and flux sampling in one window.</p>
-			</div>
-		</section>
-
-		<section id="features">
-			<h2>Features</h2>
-			<p class="section-lede">Essential tools for analysis, visualization, and export.</p>
-			<div class="grid">
-				<div class="card"><h3>Analysis</h3><p>FBA/pFBA, FVA, single/double gene or reaction deletions, robustness, production envelope, flux sampling.</p></div>
-				<div class="card"><h3>Map</h3><p>Interactive network view, node details, and quick filtering.</p></div>
-				<div class="card"><h3>Export</h3><p>Export results as CSV and share studies.</p></div>
-				<div class="card"><h3>Scenarios</h3><p>Save configurations, reload, and compare runs.</p></div>
-			</div>
-		</section>
-
-		<section id="how">
-			<h2>How to use</h2>
-			<p class="section-lede">Start your analysis in five steps.</p>
-			<div class="steps">
-				<div class="step"><strong>1.</strong> Download and install the app.</div>
-				<div class="step"><strong>2.</strong> Open your model.</div>
-				<div class="step"><strong>3.</strong> Select the analysis type.</div>
-				<div class="step"><strong>4.</strong> Run and review results.</div>
-				<div class="step"><strong>5.</strong> Export to CSV.</div>
-			</div>
-		</section>
-
-		<section id="download">
-			<h2>Download</h2>
-			<p class="section-lede">MetaboDesk is available for Windows only.</p>
-			<div class="card" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-				<div>
-					<h3 style="margin:0 0 6px;">Windows build</h3>
-					<p style="margin:0; color: var(--muted);">Download the .exe file and run it.</p>
-				</div>
-				<a class="btn primary" href="https://github.com/Emiray02/metabodesk/releases/download/1.0.0/metabodesk_app.exe" target="_blank" rel="noopener">Download for Windows</a>
-			</div>
-		</section>
-
-		<section id="license">
-			<h2>License</h2>
-			<p class="section-lede">This project is licensed under CC BY-NC-ND 4.0.</p>
-			<div class="card">
-				<p>
-					You may share the material with attribution, for non-commercial use only, and without derivatives.
-					See the full license at
-					<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">Creative Commons BY-NC-ND 4.0</a>.
-				</p>
-			</div>
-		</section>
-
-		<footer>
-			Copyright © Emir Ay 2026 · MetaboDesk  
-		</footer>
+<header>
+	<div class="container nav">
+		<div class="brand">
+			<img src="logo.png" alt="MetaboDesk logo" />
+			<span>MetaboDesk</span>
+		</div>
+		<nav class="nav-links">
+			<a href="#features">Features</a>
+			<a href="#how-to-use" id="nav-how">How to Use</a>
+			<a href="#download">Download</a>
+			<a href="#license">License</a>
+		</nav>
+		<a class="btn primary" href="#download">Download</a>
 	</div>
+</header>
+
+<main class="container">
+
+	<!-- Hero -->
+	<section class="hero" id="top">
+		<div>
+			<div class="hero-badge">🧬 Metabolic Analysis Suite</div>
+			<h1>Analyze metabolic networks with precision</h1>
+			<p>MetaboDesk brings FBA, pFBA, FVA, gene knockouts, robustness analysis, production envelopes, and flux sampling together in one powerful desktop application.</p>
+			<div class="hero-actions">
+				<a class="btn primary" href="https://github.com/Emiray02/metabodesk/releases/download/1.0.0/metabodesk_setup.exe" target="_blank" rel="noopener">⬇ Download for Windows</a>
+				<button class="btn" id="open-manual">📖 How to Use</button>
+			</div>
+		</div>
+		<div class="hero-visual">
+			<ul>
+				<li>Flux Balance Analysis (FBA &amp; pFBA)</li>
+				<li>Flux Variability Analysis (FVA)</li>
+				<li>Single &amp; Double Gene/Reaction Deletions</li>
+				<li>Robustness Analysis</li>
+				<li>Production Envelope</li>
+				<li>Flux Sampling (ACHR)</li>
+				<li>Interactive Network Map</li>
+				<li>Model Editor with Patch System</li>
+				<li>CarveMe &amp; memote Integration</li>
+				<li>Export Results to CSV</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- Features -->
+	<section id="features">
+		<div class="section-header">
+			<h2>Powerful Features</h2>
+			<p>Everything you need for comprehensive metabolic network analysis in one intuitive interface.</p>
+		</div>
+		<div class="features-grid">
+			<div class="feature-card">
+				<div class="feature-icon">📊</div>
+				<h3>Flux Balance Analysis</h3>
+				<p>Run FBA and parsimonious FBA (pFBA) to optimize and minimize total flux while achieving maximum growth.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">📈</div>
+				<h3>Flux Variability (FVA)</h3>
+				<p>Determine the minimum and maximum flux values for each reaction while maintaining optimal growth.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🧬</div>
+				<h3>Gene Knockouts</h3>
+				<p>Perform single and double gene deletion studies to identify essential genes and synthetic lethal pairs.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🔬</div>
+				<h3>Robustness Analysis</h3>
+				<p>Vary reaction bounds over a range and observe how the objective function responds to perturbations.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🎯</div>
+				<h3>Production Envelope</h3>
+				<p>Visualize the trade-off between biomass production and target metabolite synthesis.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🎲</div>
+				<h3>Flux Sampling</h3>
+				<p>Monte Carlo sampling of the flux solution space using the ACHR algorithm for probabilistic analysis.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🗺️</div>
+				<h3>Network Map</h3>
+				<p>Interactive visualization of metabolic networks with filtering, zooming, and node details.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">✏️</div>
+				<h3>Model Editor</h3>
+				<p>Add metabolites, genes, and reactions. Modify bounds, disable reactions, and export modified SBML.</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">🛠️</div>
+				<h3>CarveMe &amp; memote</h3>
+				<p>Integrated tools for genome-scale model reconstruction (CarveMe) and quality assessment (memote).</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Download -->
+	<section id="download">
+		<div class="section-header">
+			<h2>Download MetaboDesk</h2>
+			<p>Get started with metabolic network analysis in minutes.</p>
+		</div>
+		<div class="download-grid">
+			<div class="download-card">
+				<h3><img src="windows.png" alt="Windows" class="os-icon"> Windows <span class="badge">Available</span></h3>
+				<p>Download the installer for Windows 10/11. Run the setup and follow the on-screen instructions.</p>
+				<a class="btn primary" href="https://github.com/Emiray02/metabodesk/releases/download/v2.0.0/MetaboDeskSetup.exe" target="_blank" rel="noopener">⬇ Download Setup (.exe)</a>
+			</div>
+			<div class="download-card">
+				<h3><img src="linux.png" alt="Linux" class="os-icon"> Linux <span class="badge soon">Coming Soon</span></h3>
+				<p>Linux support is under development. AppImage and .deb packages will be available soon.</p>
+				<button class="btn disabled">Coming Soon</button>
+			</div>
+			<div class="download-card">
+				<h3><img src="apple-logo.png" alt="macOS" class="os-icon"> macOS <span class="badge soon">Coming Soon</span></h3>
+				<p>macOS support is under development. Universal build for Intel and Apple Silicon coming soon.</p>
+				<button class="btn disabled">Coming Soon</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- License -->
+	<section id="license">
+		<div class="license-section">
+			<h3>License</h3>
+			<p>MetaboDesk is licensed under <strong>CC BY-NC-ND 4.0</strong>. You may share the material with attribution, for non-commercial use only, and without derivatives.</p>
+			<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">View Full License →</a>
+		</div>
+	</section>
+
+</main>
+
+<footer>
+	<div class="container">
+		<p>© 2026 Emir Ay · MetaboDesk</p>
+	</div>
+</footer>
+
+<!-- Manual Modal -->
+<div class="modal-overlay" id="manual-modal">
+	<div class="modal">
+		<div class="modal-header">
+			<h2>📖 How to Use MetaboDesk</h2>
+			<button class="modal-close" id="close-manual">&times;</button>
+		</div>
+		<div class="modal-body">
+
+			<h3>1. Download and Install</h3>
+			<ol>
+				<li>Go to the <a href="#download">Download</a> section and click <strong>"Download Setup (.exe)"</strong> for Windows.</li>
+				<li>Once downloaded, double-click <code>metabodesk_setup.exe</code> to start the installer.</li>
+				<li>Follow the installation wizard: accept the license agreement (CC BY-NC-ND 4.0), choose your preferred installation folder (default: <code>C:\Program Files\MetaboDesk</code>), and click <strong>Install</strong>.</li>
+				<li>Wait for the installation to complete. This may take 1-2 minutes depending on your system.</li>
+				<li>After installation completes, launch MetaboDesk from the Start Menu or desktop shortcut.</li>
+			</ol>
+			<div class="note">
+				<strong>System Requirements:</strong> Windows 10/11 (64-bit), 4 GB RAM minimum, 500 MB disk space.
+			</div>
+
+			<h3>2. Open a Model</h3>
+			<ol>
+				<li>Click <strong>"Open SBML..."</strong> in the top toolbar.</li>
+				<li>Navigate to your SBML file (e.g., <code>e_coli_core.xml</code>) and click <strong>Open</strong>.</li>
+				<li>The model will load and you'll see a summary: number of reactions, metabolites, and genes.</li>
+				<li>The status bar at the bottom will show "Model loaded successfully" with statistics.</li>
+			</ol>
+			<div class="note">
+				<strong>Where to get models:</strong> Download curated genome-scale models from <a href="http://bigg.ucsd.edu/" target="_blank">BiGG Models</a> or <a href="https://www.ebi.ac.uk/biomodels/" target="_blank">BioModels</a>. Popular choices include <code>e_coli_core</code> (small, good for learning) and <code>iML1515</code> (full E. coli model).
+			</div>
+
+			<h3>3. Understanding Analysis Types</h3>
+			<p>MetaboDesk offers multiple analysis methods. Here's what each one does:</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">📊 Flux Balance Analysis (FBA)</h4>
+			<p>FBA is the core method for predicting metabolic fluxes. It uses linear programming to maximize an objective function (usually biomass/growth) subject to stoichiometric constraints and reaction bounds.</p>
+			<p><strong>Example:</strong> Load <code>e_coli_core</code>, run FBA, and see the predicted growth rate (~0.87 h⁻¹) along with flux values for all 95 reactions.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">⚡ Parsimonious FBA (pFBA)</h4>
+			<p>pFBA first optimizes for maximum growth (like FBA), then minimizes total flux while maintaining that growth. This yields more realistic, sparse flux distributions.</p>
+			<p><strong>Use case:</strong> When you want to identify the most efficient pathways without unnecessary flux loops.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">📈 Flux Variability Analysis (FVA)</h4>
+			<p>FVA determines the minimum and maximum possible flux through each reaction while maintaining optimal (or near-optimal) growth. Reactions with wide ranges are flexible; narrow ranges indicate constrained reactions.</p>
+			<p><strong>Example:</strong> Run FVA to identify which reactions are "blocked" (min=max=0) and which have flexibility for metabolic engineering.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">🧬 Single Gene Deletion (SGD)</h4>
+			<p>SGD systematically knocks out each gene one at a time and measures the impact on growth. Essential genes cause lethality (growth = 0) when deleted.</p>
+			<p><strong>Example:</strong> In <code>e_coli_core</code>, deleting <code>b2779</code> (ENO enzyme) eliminates growth because it's essential for glycolysis.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">🔗 Double Gene Deletion (DGD)</h4>
+			<p>DGD tests all pairwise gene knockouts to find <strong>synthetic lethal</strong> pairs—genes that are individually non-essential but lethal when both are deleted.</p>
+			<p><strong>Use case:</strong> Identifying backup pathways and redundancy in metabolism.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">⚗️ Single Reaction Deletion (SRD)</h4>
+			<p>Similar to SGD but deletes reactions instead of genes. Useful when gene-protein-reaction associations are incomplete.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">📉 Robustness Analysis</h4>
+			<p>Varies the bounds of a specific reaction (e.g., glucose uptake) over a range and tracks how the objective changes. Shows sensitivity and identifies critical thresholds.</p>
+			<p><strong>Example:</strong> Vary <code>EX_glc__D_e</code> from 0 to -20 mmol/gDW/h and observe how growth rate responds. You'll see a linear increase up to saturation.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">🎯 Production Envelope</h4>
+			<p>Shows the trade-off between biomass and a target product. As you force more production of a metabolite, growth typically decreases. The envelope shows all feasible combinations.</p>
+			<p><strong>Example:</strong> Plot growth vs. ethanol production to see the maximum theoretical yield while maintaining cell viability.</p>
+
+			<h4 style="color:var(--text);margin:18px 0 8px;">🎲 Flux Sampling</h4>
+			<p>Uses Monte Carlo sampling (ACHR algorithm) to explore the entire feasible flux space. Returns distributions (mean, std, min, max) for each reaction.</p>
+			<p><strong>Use case:</strong> When you want probabilistic insights rather than a single optimal solution.</p>
+
+			<h3>4. Run Your First Analysis</h3>
+			<ol>
+				<li>With a model loaded, select <strong>"FBA"</strong> from the Analysis dropdown.</li>
+				<li>Click <strong>"Run Analysis"</strong>.</li>
+				<li>Wait for computation (usually &lt; 1 second for FBA).</li>
+				<li>View results in the <strong>Results</strong> tab: objective value, flux chart, and detailed table.</li>
+			</ol>
+
+			<h3>5. Review and Filter Results</h3>
+			<ul>
+				<li>Use the <strong>search boxes</strong> to filter by reaction ID.</li>
+				<li>Set <strong>delta threshold</strong> to show only significant flux changes.</li>
+				<li>Click table headers to sort by column.</li>
+				<li>Double-click cells to see full details in a popup.</li>
+			</ul>
+
+			<h3>6. Export Results</h3>
+			<p>Each analysis tab has an <strong>"Export CSV"</strong> button. Click it, choose a save location, and your results are exported for further analysis in Excel, Python, or R.</p>
+
+			<h3>7. Modify the Medium (Exchange Reactions)</h3>
+			<ol>
+				<li>Go to the <strong>Medium</strong> tab.</li>
+				<li>Search for exchange reactions (e.g., <code>EX_glc__D_e</code> for glucose).</li>
+				<li>Double-click the <strong>Lower/Upper bound</strong> cells to edit uptake limits.</li>
+				<li>Negative lower bound = uptake allowed; zero = no uptake.</li>
+				<li>Use built-in presets: <strong>"Minimal M9"</strong> or <strong>"Rich LB"</strong> for common media.</li>
+			</ol>
+			<div class="note">
+				<strong>Example:</strong> To simulate anaerobic growth, set <code>EX_o2_e</code> lower bound to 0 (no oxygen uptake).
+			</div>
+
+			<h3>8. Gene Knockouts (Manual)</h3>
+			<ol>
+				<li>Go to the <strong>Gene knockout</strong> tab.</li>
+				<li>Search for the gene (e.g., <code>b0720</code>).</li>
+				<li>Select it and click <strong>"Add knockout"</strong>.</li>
+				<li>The knockout list shows all active knockouts.</li>
+				<li>Run FBA to see how growth is affected.</li>
+				<li>Use <strong>"Clear knockouts"</strong> to reset.</li>
+			</ol>
+
+			<h3>9. Overexpression</h3>
+			<ol>
+				<li>Go to the <strong>Overexpression</strong> tab.</li>
+				<li>Search for a reaction (e.g., <code>PFK</code> for phosphofructokinase).</li>
+				<li>Set the <strong>overexpression factor</strong> (e.g., 2x doubles the upper bound).</li>
+				<li>Click <strong>"Add overexpression"</strong>.</li>
+				<li>Run analysis to observe effects on metabolism.</li>
+			</ol>
+
+			<h3>10. Network Map Visualization</h3>
+			<ol>
+				<li>Go to the <strong>Map</strong> tab.</li>
+				<li><strong>Search:</strong> Enter a reaction/metabolite ID to focus on.</li>
+				<li><strong>Depth:</strong> How many neighbors to show (1-5).</li>
+				<li><strong>Flux threshold:</strong> Hide reactions with |flux| below threshold.</li>
+				<li><strong>View mode:</strong> Color by flux magnitude, gene KO impact, or FVA bounds.</li>
+				<li>Click <strong>"Render Map"</strong> to generate.</li>
+				<li>Click nodes to see details. Use toolbar to zoom/pan.</li>
+				<li>Export as image or CSV using the buttons.</li>
+			</ol>
+
+			<h3>11. Model Editor (Patch-Based)</h3>
+			<p>The Model Editor lets you modify models without altering the original SBML file. Changes are tracked as a "patch" that can be applied, saved, or exported.</p>
+
+			<h4 style="color:var(--text);margin:14px 0 8px;">Add Metabolites</h4>
+			<ol>
+				<li>Go to <strong>Model Editor → Metabolites</strong> sub-tab.</li>
+				<li>Enter metabolite ID (e.g., <code>new_met_c</code>), name, formula, and compartment.</li>
+				<li>Click <strong>"Add Metabolite"</strong>.</li>
+			</ol>
+
+			<h4 style="color:var(--text);margin:14px 0 8px;">Add Genes</h4>
+			<ol>
+				<li>Go to <strong>Model Editor → Genes</strong> sub-tab.</li>
+				<li>Enter gene ID and name.</li>
+				<li>Click <strong>"Add Gene"</strong>.</li>
+			</ol>
+
+			<h4 style="color:var(--text);margin:14px 0 8px;">Add or Modify Reactions</h4>
+			<ol>
+				<li>Go to <strong>Model Editor → Reactions</strong> sub-tab.</li>
+				<li>Enter reaction ID, name, equation (e.g., <code>atp_c + h2o_c -> adp_c + pi_c</code>), and bounds.</li>
+				<li>Optionally add GPR (gene-protein-reaction rule).</li>
+				<li>Click <strong>"Add/Update Reaction"</strong>.</li>
+			</ol>
+
+			<h4 style="color:var(--text);margin:14px 0 8px;">Disable or Delete Reactions</h4>
+			<ol>
+				<li>Go to <strong>Model Editor → Disable/Delete</strong> sub-tab.</li>
+				<li>Search for the reaction to remove.</li>
+				<li>Use <strong>"Disable"</strong> (sets bounds to 0) or <strong>"Delete"</strong> (removes entirely).</li>
+			</ol>
+
+			<h4 style="color:var(--text);margin:14px 0 8px;">View and Export Patch</h4>
+			<ol>
+				<li>Go to <strong>Model Editor → Patch</strong> sub-tab to see all changes as JSON.</li>
+				<li>Copy or save the patch for later.</li>
+			</ol>
+
+			<h4 style="color:var(--text);margin:14px 0 8px;">Export Modified SBML</h4>
+			<ol>
+				<li>Go to <strong>Model Editor → Export SBML</strong> sub-tab.</li>
+				<li>Click <strong>"Export as SBML"</strong> to save the modified model as a new file.</li>
+			</ol>
+
+			<h3>12. Tools: memote (Model Quality)</h3>
+			<p><strong>memote</strong> is an automated tool that evaluates genome-scale metabolic models for quality, completeness, and MIRIAM annotation compliance.</p>
+			<ol>
+				<li>Go to the <strong>Tools</strong> tab.</li>
+				<li>Make sure tools are installed: click <strong>"Check tools"</strong>. If missing, click <strong>"Repair tools"</strong>.</li>
+				<li>Load your SBML model.</li>
+				<li>Click <strong>"Run memote report (current model)"</strong>.</li>
+				<li>Wait for the analysis (can take 1-5 minutes depending on model size).</li>
+				<li>A detailed HTML report opens in your browser with scores for:
+					<ul>
+						<li>Stoichiometry consistency</li>
+						<li>Mass/charge balance</li>
+						<li>Annotation completeness (KEGG, ChEBI, UniProt, etc.)</li>
+						<li>Biomass composition</li>
+						<li>And many more checks...</li>
+					</ul>
+				</li>
+			</ol>
+			<div class="note">
+				<strong>Tip:</strong> Use memote reports to identify issues before publishing your model.
+			</div>
+
+			<h3>13. Tools: CarveMe (Model Reconstruction)</h3>
+			<p><strong>CarveMe</strong> reconstructs genome-scale metabolic models from annotated genome files (protein FASTA or GenBank).</p>
+			<ol>
+				<li>Go to the <strong>Tools</strong> tab.</li>
+				<li>Ensure tools are installed (<strong>"Check tools"</strong>).</li>
+				<li>Click <strong>"Run CarveMe (genome → SBML)"</strong>.</li>
+				<li>Select your input file (protein FASTA or GenBank).</li>
+				<li>Choose output location for the generated SBML.</li>
+				<li>Wait for reconstruction (can take 5-30 minutes depending on genome size).</li>
+				<li>The reconstructed model is saved and can be opened in MetaboDesk.</li>
+			</ol>
+			<div class="note">
+				<strong>Use case:</strong> Quickly generate a draft model for a new organism from its genome annotation.
+			</div>
+
+			<h3>14. Saving and Loading Scenarios</h3>
+			<ol>
+				<li>Use <strong>File → Save Scenario</strong> to save current settings (knockouts, overexpressions, medium changes).</li>
+				<li>Use <strong>File → Load Scenario</strong> to restore a saved configuration.</li>
+				<li>Recent scenarios appear in the <strong>File</strong> menu for quick access.</li>
+			</ol>
+
+			<h3>15. Keyboard Shortcuts</h3>
+			<ul>
+				<li><code>Ctrl+O</code> — Open SBML file</li>
+				<li><code>Ctrl+R</code> — Run analysis</li>
+				<li><code>Ctrl+S</code> — Save scenario</li>
+				<li><code>Ctrl+Z</code> — Undo</li>
+				<li><code>Ctrl+Y</code> — Redo</li>
+			</ul>
+
+			<h3>Troubleshooting</h3>
+			<ul>
+				<li><strong>Model won't load:</strong> Ensure it's a valid SBML Level 3 file. Try opening in COBRApy first.</li>
+				<li><strong>Analysis stuck:</strong> Large models (>5000 reactions) may take longer. Check the status bar.</li>
+				<li><strong>memote/CarveMe not working:</strong> Go to Tools tab and click "Repair tools" to reinstall dependencies.</li>
+				<li><strong>Solver errors:</strong> Try switching to a different solver (Auto, glpk, or highs) in the toolbar.</li>
+			</ul>
+
+			<div class="note">
+				<strong>Need more help?</strong> Check the Tools tab log output for detailed error messages, or contact support.
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	// Modal logic
+	const modal = document.getElementById('manual-modal');
+	const openBtn = document.getElementById('open-manual');
+	const navHow = document.getElementById('nav-how');
+	const closeBtn = document.getElementById('close-manual');
+
+	function openModal(e) {
+		e.preventDefault();
+		modal.classList.add('active');
+		document.body.style.overflow = 'hidden';
+	}
+	function closeModal() {
+		modal.classList.remove('active');
+		document.body.style.overflow = '';
+	}
+
+	openBtn.addEventListener('click', openModal);
+	navHow.addEventListener('click', openModal);
+	closeBtn.addEventListener('click', closeModal);
+	modal.addEventListener('click', (e) => {
+		if (e.target === modal) closeModal();
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') closeModal();
+	});
+</script>
+
 </body>
 </html>
