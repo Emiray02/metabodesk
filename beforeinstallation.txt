@@ -1,0 +1,24 @@
+METABODESK SETUP - IMPORTANT INFORMATION
+
+Thank you for installing MetaboDesk.
+
+This installer will:
+- Install the MetaboDesk application
+- Download required runtime files from the internet (~800 MB)
+- Install Python packages automatically (memote, carveme, etc.)
+- Create a Start Menu shortcut (optional desktop shortcut)
+
+Requirements:
+- Active internet connection (required for first-time install)
+- Approximately 1.5 GB of free disk space
+- Windows 10 or later (64-bit)
+
+Notes:
+- The download is approximately 800 MB and may take several minutes
+  depending on your internet connection speed.
+- Please do not close the installer while downloading.
+- If the download fails, you can retry by running the installer again.
+- Administrator permission may be required.
+- If you already have a previous version, it will be replaced.
+
+Click "Next" to continue.

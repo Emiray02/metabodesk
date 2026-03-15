@@ -1,0 +1,75 @@
+{
+  "timestamp": "2026-02-22 23:46:04",
+  "models": {
+    "e_coli_core": {
+      "reactions": 95,
+      "metabolites": 72,
+      "genes": 137
+    },
+    "iMM904": {
+      "reactions": 1577,
+      "metabolites": 1226,
+      "genes": 905
+    },
+    "RECON1": {
+      "reactions": 3742,
+      "metabolites": 2766,
+      "genes": 1905
+    }
+  },
+  "fba": {
+    "e_coli_core": {
+      "md": 0.8739215069684305,
+      "cobra": 0.8739215069684279,
+      "lit": 0.8739
+    },
+    "iMM904": {
+      "md": 0.28786570370401793,
+      "cobra": 0.2878657037040186,
+      "lit": 0.2879
+    },
+    "RECON1": {
+      "md": 100.0,
+      "cobra": 100.0,
+      "lit": null
+    }
+  },
+  "pfba": {
+    "e_coli_core": {
+      "md_total": 518.4220855176073,
+      "cobra_total": 518.4220855176067
+    },
+    "iMM904": {
+      "md_total": 338.0059915821172,
+      "cobra_total": 338.00599158213964
+    },
+    "RECON1": {
+      "md_total": 366.6666666666667,
+      "cobra_total": 366.6666666666667
+    }
+  },
+  "sgd": {
+    "e_coli_core": {
+      "essential": 7,
+      "total": 137
+    },
+    "iMM904": {
+      "essential": 110,
+      "total": 905
+    },
+    "RECON1": {
+      "essential": 0,
+      "total": 200
+    }
+  },
+  "srd": {
+    "e_coli_core": {
+      "essential": 18,
+      "total": 95
+    },
+    "iMM904": {
+      "essential": 168,
+      "total": 1577
+    }
+  }
+}

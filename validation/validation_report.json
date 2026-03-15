@@ -1,0 +1,382 @@
+{
+  "timestamp": "2026-02-22 23:09:01",
+  "model": "E. coli core (textbook)",
+  "passed": 92,
+  "failed": 0,
+  "skipped": 1,
+  "elapsed_seconds": 10.3,
+  "tests": {
+    "1. Model Loading :: Model loads successfully": {
+      "status": "PASS",
+      "detail": "Model id = e_coli_core"
+    },
+    "1. Model Loading :: Reactions == 95": {
+      "status": "PASS",
+      "detail": "got 95"
+    },
+    "1. Model Loading :: Metabolites == 72": {
+      "status": "PASS",
+      "detail": "got 72"
+    },
+    "1. Model Loading :: Genes == 137": {
+      "status": "PASS",
+      "detail": "got 137"
+    },
+    "1. Model Loading :: Objective contains 'biomass'": {
+      "status": "PASS",
+      "detail": "objective vars = ['Biomass_Ecoli_core_reverse_2cdba', 'Biomass_Ecoli_core']"
+    },
+    "2. FBA :: FBA status == optimal": {
+      "status": "PASS",
+      "detail": "status = optimal"
+    },
+    "2. FBA :: Growth ≈ 0.8739": {
+      "status": "PASS",
+      "detail": "got 0.873922"
+    },
+    "2. FBA :: Glucose uptake ≈ -10": {
+      "status": "PASS",
+      "detail": "got -10.0000"
+    },
+    "2. FBA :: Biomass flux ≈ growth rate": {
+      "status": "PASS",
+      "detail": "biomass flux = 0.873922, growth = 0.873922"
+    },
+    "2. FBA :: Shadow prices available": {
+      "status": "PASS",
+      "detail": "count = 72"
+    },
+    "2. FBA :: Reduced costs available": {
+      "status": "PASS",
+      "detail": "count = 95"
+    },
+    "2. FBA :: All fluxes within bounds": {
+      "status": "PASS",
+      "detail": "violations = 0"
+    },
+    "3. pFBA :: pFBA status == optimal": {
+      "status": "PASS",
+      "detail": "status = optimal"
+    },
+    "3. pFBA :: pFBA growth ≈ FBA growth": {
+      "status": "PASS",
+      "detail": "pFBA=0.873922, FBA=0.873922"
+    },
+    "3. pFBA :: Total |flux| pFBA <= FBA": {
+      "status": "PASS",
+      "detail": "pFBA=518.4221, FBA=518.4221"
+    },
+    "3. pFBA :: Active reactions pFBA <= FBA": {
+      "status": "PASS",
+      "detail": "pFBA=48, FBA=48"
+    },
+    "4. FVA :: FVA returns results for all reactions": {
+      "status": "PASS",
+      "detail": "got 95 rows for 95 rxns"
+    },
+    "4. FVA :: min <= max for all reactions": {
+      "status": "PASS",
+      "detail": "violations = 0"
+    },
+    "4. FVA :: Biomass FVA range > 0 (fraction=0.9)": {
+      "status": "PASS",
+      "detail": "range = [0.786529, 0.873922]"
+    },
+    "4. FVA :: Multiple exchange reactions have variability": {
+      "status": "PASS",
+      "detail": "variable exchanges = 16/20"
+    },
+    "4. FVA :: Blocked reactions identifiable (frac=0)": {
+      "status": "PASS",
+      "detail": "blocked = 8"
+    },
+    "5. Single Gene Deletion :: SGD returns results for all genes": {
+      "status": "PASS",
+      "detail": "got 137 results for 137 genes"
+    },
+    "5. Single Gene Deletion :: Essential genes > 0": {
+      "status": "PASS",
+      "detail": "essential = 7"
+    },
+    "5. Single Gene Deletion :: Non-essential genes > essential": {
+      "status": "PASS",
+      "detail": "essential=7, non-essential=130"
+    },
+    "5. Single Gene Deletion :: MetaboDesk SGD count matches COBRApy": {
+      "status": "PASS",
+      "detail": "MetaboDesk=137, COBRApy=137"
+    },
+    "5. Single Gene Deletion :: MetaboDesk SGD values match COBRApy": {
+      "status": "PASS",
+      "detail": "mismatches = 0 / 137"
+    },
+    "6. Single Reaction Deletion :: SRD returns results for all reactions": {
+      "status": "PASS",
+      "detail": "got 95 results for 95 rxns"
+    },
+    "6. Single Reaction Deletion :: Essential reactions identified": {
+      "status": "PASS",
+      "detail": "essential = 18"
+    },
+    "6. Single Reaction Deletion :: MetaboDesk SRD matches COBRApy": {
+      "status": "PASS",
+      "detail": "mismatches = 0 / 95"
+    },
+    "7. Double Gene Deletion :: DGD returns 10 pairs for 5 genes": {
+      "status": "PASS",
+      "detail": "got 10 pairs"
+    },
+    "7. Double Gene Deletion :: All DGD values >= 0": {
+      "status": "PASS",
+      "detail": "min = 0.211141"
+    },
+    "8. Robustness Analysis :: Robustness returns values and objectives": {
+      "status": "PASS",
+      "detail": "points = 10"
+    },
+    "8. Robustness Analysis :: Values and objectives same length": {
+      "status": "PASS",
+      "detail": "values=10, obj=10"
+    },
+    "8. Robustness Analysis :: Aerobic growth >= anaerobic growth": {
+      "status": "PASS",
+      "detail": "max=0.8739, min=0.2117"
+    },
+    "8. Robustness Analysis :: Max growth ≈ WT growth": {
+      "status": "PASS",
+      "detail": "max=0.8739, WT≈0.8739"
+    },
+    "9. Production Envelope :: Envelope returns growth and product": {
+      "status": "PASS",
+      "detail": "points = 10"
+    },
+    "9. Production Envelope :: Growth decreases as product increases": {
+      "status": "PASS",
+      "detail": "first=0.8739, last=0.0000"
+    },
+    "9. Production Envelope :: All growth values >= 0": {
+      "status": "PASS",
+      "detail": "min growth = 0.000000"
+    },
+    "10. Flux Sampling :: Sampling returns results for reactions": {
+      "status": "PASS",
+      "detail": "reactions = 95"
+    },
+    "10. Flux Sampling :: Samples DataFrame has correct shape": {
+      "status": "PASS",
+      "detail": "samples shape = (100, 95)"
+    },
+    "10. Flux Sampling :: Biomass mean flux > 0": {
+      "status": "PASS",
+      "detail": "biomass mean = 0.0386"
+    },
+    "10. Flux Sampling :: All stdev >= 0": {
+      "status": "PASS",
+      "detail": "negative stdev count = 0"
+    },
+    "10. Flux Sampling :: min <= mean <= max for all": {
+      "status": "PASS",
+      "detail": "violations = 0"
+    },
+    "11. MetaboDesk compute_fva :: FVA result has entries for all reactions": {
+      "status": "PASS",
+      "detail": "got 95"
+    },
+    "11. MetaboDesk compute_fva :: MetaboDesk FVA matches COBRApy": {
+      "status": "PASS",
+      "detail": "mismatches = 0 / 95"
+    },
+    "12. MetaboDesk compute_pfba :: pFBA status == optimal": {
+      "status": "PASS",
+      "detail": "status = optimal"
+    },
+    "12. MetaboDesk compute_pfba :: pFBA total flux matches COBRApy": {
+      "status": "PASS",
+      "detail": "MetaboDesk=518.4221, COBRApy=518.4221"
+    },
+    "12. MetaboDesk compute_pfba :: MetaboDesk pFBA fluxes match COBRApy": {
+      "status": "PASS",
+      "detail": "mismatches = 0 / 95"
+    },
+    "13. E-Flux :: E-Flux with uniform expression is feasible": {
+      "status": "PASS",
+      "detail": "status = optimal"
+    },
+    "13. E-Flux :: E-Flux uniform growth ≈ WT": {
+      "status": "PASS",
+      "detail": "growth = 0.8739"
+    },
+    "13. E-Flux :: E-Flux with low expression is feasible": {
+      "status": "PASS",
+      "detail": "status = optimal"
+    },
+    "14. GPR Evaluator :: AND = min(5, 3) = 3": {
+      "status": "PASS",
+      "detail": "got 3.0"
+    },
+    "14. GPR Evaluator :: OR = max(5, 3) = 5": {
+      "status": "PASS",
+      "detail": "got 5.0"
+    },
+    "14. GPR Evaluator :: (A and B) or C = max(min(5,3), 4) = 4": {
+      "status": "PASS",
+      "detail": "got 4.0"
+    },
+    "14. GPR Evaluator :: Empty expression returns None": {
+      "status": "PASS",
+      "detail": "got None"
+    },
+    "14. GPR Evaluator :: No matching genes returns None": {
+      "status": "PASS",
+      "detail": "got None"
+    },
+    "15. TMFA Logic :: TMFA with ΔG°=0 identifies some reactions": {
+      "status": "PASS",
+      "detail": "reactions with ΔG'>0 at best case: 0"
+    },
+    "15. TMFA Logic :: TMFA with large positive ΔG reduces growth or infeasible": {
+      "status": "PASS",
+      "detail": "status=infeasible, growth=N/A"
+    },
+    "16. GECKO Logic :: GECKO-constrained model is feasible": {
+      "status": "PASS",
+      "detail": "status=optimal"
+    },
+    "16. GECKO Logic :: GECKO growth <= unconstrained growth": {
+      "status": "PASS",
+      "detail": "GECKO=0.8739, WT=0.8739"
+    },
+    "17. OptKnock Logic :: OptKnock finds some valid strategies": {
+      "status": "PASS",
+      "detail": "strategies found = 41"
+    },
+    "17. OptKnock Logic :: Some knockouts increase acetate production": {
+      "status": "PASS",
+      "detail": "improving = 6, baseline target = 0.0000"
+    },
+    "18. Metabolic Distance :: BFS finds reachable metabolites from pyr_c": {
+      "status": "PASS",
+      "detail": "reachable = 53"
+    },
+    "18. Metabolic Distance :: accoa_c distance from pyr_c == 1": {
+      "status": "PASS",
+      "detail": "distance = 1"
+    },
+    "19. Pareto Frontier :: Pareto frontier has feasible points": {
+      "status": "PASS",
+      "detail": "points = 10"
+    },
+    "19. Pareto Frontier :: Non-dominated Pareto points identified": {
+      "status": "PASS",
+      "detail": "pareto points = 10"
+    },
+    "19. Pareto Frontier :: Trade-off observed (obj2 changes along frontier)": {
+      "status": "PASS",
+      "detail": "obj2 range = [-0.0000, 20.0000]"
+    },
+    "20. Minimal Cut Sets :: MCS for acetate": {
+      "status": "SKIP",
+      "detail": "Acetate flux already zero at baseline"
+    },
+    "21. Flux Coupling :: Active + blocked = total reactions": {
+      "status": "PASS",
+      "detail": "active=87, blocked=8"
+    },
+    "21. Flux Coupling :: Identifies potential coupling groups": {
+      "status": "PASS",
+      "detail": "groups with ≥2 reactions = 15"
+    },
+    "22. Utility Functions :: is_exchange_reaction(EX_glc__D_e) == True": {
+      "status": "PASS",
+      "detail": ""
+    },
+    "22. Utility Functions :: is_exchange_reaction(PGI) == False": {
+      "status": "PASS",
+      "detail": ""
+    },
+    "22. Utility Functions :: _safe_float('3.14') == 3.14": {
+      "status": "PASS",
+      "detail": "got 3.14"
+    },
+    "22. Utility Functions :: _safe_float('abc') == 0.0": {
+      "status": "PASS",
+      "detail": "got 0.0"
+    },
+    "22. Utility Functions :: _safe_float(float('nan')) == 0.0": {
+      "status": "PASS",
+      "detail": ""
+    },
+    "22. Utility Functions :: _safe_float(float('inf')) == 0.0": {
+      "status": "PASS",
+      "detail": ""
+    },
+    "22. Utility Functions :: _as_str_list(None) == []": {
+      "status": "PASS",
+      "detail": "got []"
+    },
+    "22. Utility Functions :: _as_str_list('hello') == ['hello']": {
+      "status": "PASS",
+      "detail": "got ['hello']"
+    },
+    "22. Utility Functions :: _as_str_list(['a','b']) == ['a','b']": {
+      "status": "PASS",
+      "detail": "got ['a', 'b']"
+    },
+    "22. Utility Functions :: clean identifiers.org URL": {
+      "status": "PASS",
+      "detail": "got 'PFK'"
+    },
+    "22. Utility Functions :: guess compartment 'glc__D_c' → 'c'": {
+      "status": "PASS",
+      "detail": "got 'c'"
+    },
+    "22. Utility Functions :: parse 'A_c + B_c -> C_c'": {
+      "status": "PASS",
+      "detail": "mets={'A_c': -1.0, 'B_c': -1.0, 'C_c': 1.0}, rev=False"
+    },
+    "22. Utility Functions :: parse 'A_c <=> B_c' is reversible": {
+      "status": "PASS",
+      "detail": "rev=True"
+    },
+    "23. Equation Parser :: 2 A + B → C + 3 D parsed correctly": {
+      "status": "PASS",
+      "detail": "mets={'A_c': -2.0, 'B_c': -1.0, 'C_c': 1.0, 'D_c': 3.0}"
+    },
+    "23. Equation Parser :: A ⇌ B is reversible": {
+      "status": "PASS",
+      "detail": "rev=True"
+    },
+    "23. Equation Parser :: X → (demand) parsed correctly": {
+      "status": "PASS",
+      "detail": "mets={'X_c': -1.0}"
+    },
+    "24. Loopless FBA :: Loopless FBA is feasible": {
+      "status": "PASS",
+      "detail": "status=optimal, growth=0.8739"
+    },
+    "24. Loopless FBA :: Loopless growth ≈ FBA growth": {
+      "status": "PASS",
+      "detail": "loopless=0.8739, FBA≈0.8739"
+    },
+    "25. Mass Balance :: Mass-balanced internal reactions": {
+      "status": "PASS",
+      "detail": "unbalanced = 1: ['Biomass_Ecoli_core']"
+    },
+    "26. Anaerobic vs Aerobic :: Anaerobic FBA is feasible": {
+      "status": "PASS",
+      "detail": "status = optimal"
+    },
+    "26. Anaerobic vs Aerobic :: Aerobic growth > anaerobic growth": {
+      "status": "PASS",
+      "detail": "aerobic=0.8739, anaerobic=0.2117"
+    },
+    "26. Anaerobic vs Aerobic :: Ethanol production increases anaerobically": {
+      "status": "PASS",
+      "detail": "aerobic EtOH=0.0000, anaerobic EtOH=8.2795"
+    },
+    "27. FSEOF Logic :: FSEOF identifies amplification targets": {
+      "status": "PASS",
+      "detail": "increasing reactions = 19"
+    }
+  }
+}

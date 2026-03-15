@@ -1,0 +1,12 @@
+METABODESK SETUP – COMPLETED
+
+Installation finished successfully.
+
+Next steps:
+• Launch MetaboDesk from the Start Menu or Desktop.
+• Open an SBML file to begin analysis.
+• Tools → Check tools to verify memote / carveme availability.
+
+If you need help, please contact the developer. --> emiray0202@gmail.com
+
+Click “Finish” to exit the setup.
